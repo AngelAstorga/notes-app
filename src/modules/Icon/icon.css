@@ -1,0 +1,11 @@
+.note__deleteIconContainer{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.note__deleteIcon{
+    width: 20px;
+    height: 20px;
+    fill: red;
+    cursor: pointer;
+}

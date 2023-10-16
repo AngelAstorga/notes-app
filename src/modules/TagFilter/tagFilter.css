@@ -5,3 +5,9 @@
     display: flex;
     justify-content: space-around;
 }
+.TagFilter__Options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}

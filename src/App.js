@@ -1,9 +1,9 @@
 import './App.css';
 import './styles/variables.css';
-import { Button } from './modules/Button';
 import { ItemList } from './modules/ItemList';
 import { SearchBox } from './modules/SearchBox';
 import { TagFilter } from './modules/TagFilter';
+import { CreateNote } from './modules/CreateNote';
 
 
 function App() {
@@ -12,9 +12,8 @@ function App() {
     <div className='AppWrapper'>
     <SearchBox/>
     <TagFilter/>
-    <ItemList>
-    </ItemList>
-    <Button/>
+    <ItemList/>
+    <CreateNote/>
     </div>
   </div>
   );

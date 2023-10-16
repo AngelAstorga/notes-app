@@ -1,0 +1,15 @@
+.ItemContainer{
+    position: relative;
+    padding: 25px;
+}
+.Item__text{
+    resize: none;
+    width: 223px;
+    height: 70px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+.Item__tagContainer{
+    display: flex;
+    justify-content: space-between;
+}
