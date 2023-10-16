@@ -1,10 +1,10 @@
 import React from "react";
 
-function Icon(){
+function TagFilter(){
     return (
         <div>
 
         </div>
     );
 }
-export {Icon};
+export {TagFilter};

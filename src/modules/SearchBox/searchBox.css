@@ -1,0 +1,27 @@
+
+.SearchBoxContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.SearchBoxInput{
+    background-color: rgba(var(--standarGray), 0.5);
+    outline-style: none;
+    outline-color: none;
+    outline-width: 0px;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 5px;
+    width: 60%;
+    min-width: 223px;
+    color: rgba(var(--white), 1);
+}
+.SearchBoxInput:focus{
+    outline-color: rgba(var(--blue), 1);
+    outline-width: 2px;
+    outline-style:double;
+    outline-offset: 0px;
+}
+.SearchBoxInput::placeholder{
+    color: rgba(var(--white), 0.7);
+}
