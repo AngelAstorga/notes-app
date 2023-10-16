@@ -13,7 +13,6 @@ function App() {
     <SearchBox/>
     <TagFilter/>
     <ItemList>
-
     </ItemList>
     <Button/>
     </div>

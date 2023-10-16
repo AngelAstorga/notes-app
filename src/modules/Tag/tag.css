@@ -1,0 +1,10 @@
+.TagContainer{
+    border: 1px solid rgba(var(--defaultTagBorder), 0.8);
+    padding: 2px 7px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.TagContainer:hover{
+    box-shadow: 0px 0px 1px 1px rgba(var(--blue), 0.8);
+}

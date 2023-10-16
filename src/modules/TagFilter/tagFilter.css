@@ -1,0 +1,7 @@
+.TagFilterContainer{
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    justify-content: space-around;
+}
