@@ -4,20 +4,59 @@ import { ListTag } from "../ListTag";
 import { Button } from "../Button";
 import { Tag } from "../Tag";
 import { DeleteIcon } from "../Icon/DeleteIcon";
+import { NoteAppContext } from "../../contexts/NoteAppContext";
 
-function Item(){
+function Item(props){
+    const {listNotes, setListNotes} =React.useContext(NoteAppContext);
+    const [description,setDescription] = React.useState(props.description || "" );
+    const [flagEdit,setFlagEdit] = React.useState(false);
+
+    const updateItem=(e)=>{
+
+    }
+    const deleteItem=()=>{
+
+    }
+    const onEdit=(e)=>{
+        setFlagEdit(flagEdit?false:true);
+        const itemText= e.currentTarget.firstChild;
+
+        if(!flagEdit){
+                itemText.removeAttribute("readOnly");
+                itemText.style.border="1px solid rgba(var(--borderBox),0.7)";
+            }else{
+                itemText.setAttribute("readOnly", true);
+                itemText.style.border="none"; 
+            }
+        }
+
+    
+
     return (
-        <div className="ItemContainer" >
-            <textarea className="Item__text" name="" id=""></textarea>
+        <div onDoubleClick={(e)=>{
+            onEdit(e);
+        }} className="ItemContainer" >
+            <textarea readOnly 
+            onChange={(e)=>{
+                setDescription(e.target.value);
+            }}  
+                className="Item__text" 
+                name={props.id}  
+                value={description} />
             <div className="Item__tagContainer">
                 <ListTag>
-                    <Tag/>
-                    <Tag/>
-                    <Tag/>
+                    { props.tags.map((element)=>{
+                        return(
+                            <Tag key={element.idTag}/>
+                        );
+                    })
+                    }
                 </ListTag>
-                <Button text="Add"/>
+                {flagEdit && 
+                    <Button text="Add"/>}
             </div>
-            <DeleteIcon noteDelete={true}/>
+            <DeleteIcon 
+                noteDelete={flagEdit}/>
             <div id="modalTag">
             </div>
         </div>

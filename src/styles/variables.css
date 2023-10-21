@@ -4,7 +4,10 @@
     --standarGray: 45,45,45;
     --standarGray: 45,45,45;
     --boxShadow: 33,33,33;
+    --boxShadowHover: 33,58,123;
 
     /* Tag Variables*/
     --defaultTagBorder: 33,33,33;
+    /* Notes Variables*/
+    --borderBox: 0,0,0;
 }
