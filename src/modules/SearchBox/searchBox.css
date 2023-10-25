@@ -25,3 +25,16 @@
 .SearchBoxInput::placeholder{
     color: rgba(var(--white), 0.7);
 }
+.SearchBox__create{
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0px 0px 1px 1px rgba(var(--standarGray), 0.5);
+    background-color: rgba(var(--white), 0.5);
+    opacity: 0.6;
+    cursor: default;
+}
+.SearchBox__create--on{
+    background-color: rgba(var(--white), 0.5);
+    cursor: pointer;
+    opacity: 1;
+}

@@ -1,9 +1,9 @@
 import React from "react";
 import "./button.css"; 
 
-function Button({text}){
+function Button({text,handleOnclick}){
     return (
-        <button className="ButtonContainer">
+        <button onClick={()=>{handleOnclick()}} className="ButtonContainer">
             {text}
         </button>
     );

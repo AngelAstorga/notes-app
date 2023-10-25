@@ -20,7 +20,7 @@ function LocalStorage(name, initialValue){
     
     const saveList=(newList)=>{
         localStorage.setItem(name,JSON.stringify(newList));
-        setItem(initialValue);
+        setItem(newList);
     }
 
     return({

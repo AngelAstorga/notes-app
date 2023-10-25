@@ -10,7 +10,7 @@ function App() {
   return (
   <div className='AppContainer'>
     <div className='AppWrapper'>
-    <SearchBox/>
+    <SearchBox text="Search"/>
     <TagFilter/>
     <ItemList/>
     <CreateNote/>

@@ -47,7 +47,7 @@ function Item(props){
                 <ListTag>
                     { props.tags.map((element)=>{
                         return(
-                            <Tag key={element.idTag}/>
+                            <Tag key={element.idTag} text={element.tagDescription} type="description"/>
                         );
                     })
                     }

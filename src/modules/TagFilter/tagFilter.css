@@ -5,9 +5,20 @@
     display: flex;
     justify-content: space-around;
 }
-.TagFilter__Options{
+.TagFilter__options{
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: 10px;
+}
+.TagFilter__config{
+    margin-top: 15px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10px;
+}
+.TagFilter__config--show{
+    display: flex;
 }

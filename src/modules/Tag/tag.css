@@ -13,3 +13,7 @@
 .TagContainer:hover{
     box-shadow: 0px 0px 1px 1px rgba(var(--blue), 0.8);
 }
+
+.TagContainer--description:hover{
+    box-shadow: none;
+}
