@@ -24,9 +24,11 @@ function Item(props){
         if(!flagEdit){
                 itemText.removeAttribute("readOnly");
                 itemText.style.border="1px solid rgba(var(--borderBox),0.7)";
+                itemText.style.cursor="text";
             }else{
                 itemText.setAttribute("readOnly", true);
                 itemText.style.border="none"; 
+                itemText.style.cursor="pointer";
             }
         }
 
