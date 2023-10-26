@@ -3,12 +3,12 @@ import "./tagFilter.css";
 import {ListTag} from "../ListTag";
 import {Tag} from "../Tag";
 import { Button } from "../Button";
-import { Icon } from "../Icon";
 import { SearchBox } from "../SearchBox";
 import { NoteAppContext } from "../../contexts/NoteAppContext";
+import { FilterIcon } from "../Icon/FilterIcon";
 
 function TagFilter(){
-    const {listTags,searchTag,setFlagNewTag} = React.useContext(NoteAppContext);
+    const {listTags,searchTag,setFlagNewTag,setFlagFilter} = React.useContext(NoteAppContext);
     const auxListTags=[...listTags];
     let auxListFilteredListTags=[];
     let flagEmpty=true;
@@ -19,6 +19,17 @@ function TagFilter(){
         }    
     }
     );
+
+    const handleFilter=()=>{
+        const element=document.getElementById("filterIcon");
+        if(element.classList.contains("FilterIcon--on")){
+            element.classList.remove("FilterIcon--on");
+            setFlagFilter(false);
+        }else{
+            element.classList.add("FilterIcon--on");
+            setFlagFilter(true);
+        }
+    }
 
     auxListFilteredListTags= auxListTags.filter((element)=>{
         return ((element.status) == false && element.description.includes(searchTag) && searchTag != "");
@@ -56,9 +67,9 @@ function TagFilter(){
             <div className="TagFilter__optionsContainer">
                 <div className="TagFilter__options">
                     <Button text="Add" handleOnclick={handleOpenSearchTag}/>
-                    <Icon
-                        type="FilterImg"
-                        />
+                    <FilterIcon
+                        handleFilter={handleFilter}
+                    />
                 </div>
             </div>
         </div>

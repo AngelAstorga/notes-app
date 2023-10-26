@@ -9,3 +9,10 @@
     fill: red;
     cursor: pointer;
 }
+.FilterIcon{
+    opacity: 0.7;
+    cursor: pointer;
+}
+.FilterIcon--on{
+    opacity: 1;
+}
