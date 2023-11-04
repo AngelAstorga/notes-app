@@ -9,7 +9,7 @@ function ItemList(){
         return note.description.includes(search);
     });
 
-
+    
     if( flagFilter){
        searchedList= searchedList.filter((element)=>{
             const listItemTags= element.tags;
@@ -28,7 +28,8 @@ function ItemList(){
 
        });
     }
-    
+
+
     return (
         <div className="ItemListContainer">
            {searchedList.map((element)=>{
@@ -37,7 +38,8 @@ function ItemList(){
                 description={element.description} 
                 tags={element.tags} 
                 id={element.id}
-                key={element.id}/>
+                key={element.id}
+                />
             );
            })}
         </div>

@@ -9,16 +9,10 @@ import { FilterIcon } from "../Icon/FilterIcon";
 
 function TagFilter(){
     const {listTags,searchTag,setFlagNewTag,setFlagFilter} = React.useContext(NoteAppContext);
-    const auxListTags=[...listTags];
-    let auxListFilteredListTags=[];
-    let flagEmpty=true;
 
-    listTags.map((element)=>{
-        if(element.status){
-            flagEmpty= false;
-        }    
-    }
-    );
+    const [auxListFilteredListTags, setAuxListFilteredListTags] = React.useState([]);
+
+    let flagEmpty=true;
 
     const handleFilter=()=>{
         const element=document.getElementById("filterIcon");
@@ -31,16 +25,28 @@ function TagFilter(){
         }
     }
 
-    auxListFilteredListTags= auxListTags.filter((element)=>{
-        return ((element.status) == false && element.description.includes(searchTag) && searchTag != "");
-    });
-
-    if(auxListFilteredListTags.length == 0 && searchTag.length>0 && searchTag != ""){
-        setFlagNewTag(true);
-    }else{
-        setFlagNewTag(false);
-
+    listTags.map((element)=>{
+        if(element.status){
+            flagEmpty= false;
+        }    
     }
+    );
+
+    React.useEffect(
+        ()=>{
+            let filteredTags= listTags.filter((element)=>{
+                return ((element.status) == false && element.description.includes(searchTag) && searchTag != "");
+            });
+            setAuxListFilteredListTags(filteredTags);
+
+            if(auxListFilteredListTags.length == 0 && searchTag.length>0 && searchTag != ""){
+                setFlagNewTag(true);
+            }else{
+                setFlagNewTag(false);
+            }
+        }
+        ,[listTags,searchTag,setFlagFilter,setFlagNewTag]);
+
     
     const handleOpenSearchTag=()=>{
      const tagFilterConfig=  document.getElementsByClassName("TagFilter__config");
@@ -59,7 +65,7 @@ function TagFilter(){
                 listTags.map((tag)=>{
                     return( 
                         tag.status 
-                        && <Tag key={`TagFilterContainer${tag.idTag}`} text= {tag.description} name={tag.idTag} />
+                        && <Tag key={`TagFilterContainer${tag.idTag}`} text= {tag.description} name={tag.idTag} type="filter" />
                     )
                 })
                 }
@@ -74,11 +80,11 @@ function TagFilter(){
             </div>
         </div>
         <div className="TagFilter__config">
-            <SearchBox text="Search Tag"/>
+            <SearchBox text="Search Tag" type="SearchFilter"/>
             <ListTag>
             {auxListFilteredListTags.map((tag)=>{
                     return(
-                        <Tag text= {tag.description} name={tag.idTag} />
+                        <Tag key={`TagFilterContainer${tag.idTag}`} text= {tag.description} name={tag.idTag} type="filter"/>
                     )
                 })
                 }

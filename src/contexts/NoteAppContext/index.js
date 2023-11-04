@@ -23,7 +23,6 @@ function NoteAppProvider({children}){
     const [flagFilter,setFlagFilter] = React.useState(false);
 
 
-
     return (
         <NoteAppContext.Provider 
         value={

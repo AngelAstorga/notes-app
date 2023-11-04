@@ -1,0 +1,12 @@
+.TagItemManagerContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.TagItemManager__head{
+    display: flex;
+    justify-content: space-between;
+}
+.TagItemManager__listTags{
+    display: flex; 
+}

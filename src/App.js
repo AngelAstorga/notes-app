@@ -10,10 +10,11 @@ function App() {
   return (
   <div className='AppContainer'>
     <div className='AppWrapper'>
-    <SearchBox text="Search"/>
+    <SearchBox type="Search" text="Search"/>
     <TagFilter/>
     <ItemList/>
-    <CreateNote/>
+    {/* 
+    <CreateNote/> */}
     </div>
   </div>
   );

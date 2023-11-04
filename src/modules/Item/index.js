@@ -1,22 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./item.css";
 import { ListTag } from "../ListTag";
 import { Button } from "../Button";
 import { Tag } from "../Tag";
 import { DeleteIcon } from "../Icon/DeleteIcon";
 import { NoteAppContext } from "../../contexts/NoteAppContext";
+import { TagItemManager } from "../TagItemManager";
 
 function Item(props){
-    const {listNotes, setListNotes} =React.useContext(NoteAppContext);
+    const {listTags} = React.useContext(NoteAppContext);
     const [description,setDescription] = React.useState(props.description || "" );
     const [flagEdit,setFlagEdit] = React.useState(false);
+    const [listTagsAux,setListTagsAux]= React.useState([]);
 
-    const updateItem=(e)=>{
 
-    }
-    const deleteItem=()=>{
+    React.useEffect(()=>{
+        let auxListTags=[];
+        let containerList=[];
+        if(listTags.length > 0){
+            auxListTags=[...listTags];
+            auxListTags.map((element)=>{
+                let newElement= {idTag: element.idTag, description: element.description, status: false}
+                containerList.push(newElement);
+            });
+        setListTagsAux(containerList);
+        }
+    },[listTags]);
+    
 
-    }
+
     const onEdit=(e)=>{
         setFlagEdit(flagEdit?false:true);
         const itemText= e.currentTarget.firstChild;
@@ -46,17 +58,25 @@ function Item(props){
                 name={props.id}  
                 value={description} />
             <div className="Item__tagContainer">
+               
                 <ListTag>
                     { props.tags.map((element)=>{
                         return(
-                            <Tag key={element.idTag} text={element.tagDescription} type="description"/>
+                            <Tag 
+                            key={`inItem${element.idTag}`} 
+                            text={element.tagDescription} 
+                            type="description"/>
                         );
                     })
                     }
                 </ListTag>
+
                 {flagEdit && 
                     <Button text="Add"/>}
             </div>
+            
+            <TagItemManager listTags={listTagsAux} listTagsAdded={props.tags}/>
+
             <DeleteIcon 
                 noteDelete={flagEdit}/>
             <div id="modalTag">
