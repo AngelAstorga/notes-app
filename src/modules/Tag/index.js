@@ -31,6 +31,7 @@ const TagTypes= {
                 <span 
                     onDoubleClick={
                         (e)=>{
+                            e.stopPropagation();
                         manageTagFromItem({e,listTags,setListTags, setSearchTag, listNotes, setListNotes})
                     }
                     

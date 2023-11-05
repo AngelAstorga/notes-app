@@ -56,26 +56,8 @@ function Item(props){
             }}  
                 className="Item__text" 
                 name={props.id}  
-                value={description} />
-            <div className="Item__tagContainer">
-               
-                <ListTag>
-                    { props.tags.map((element)=>{
-                        return(
-                            <Tag 
-                            key={`inItem${element.idTag}`} 
-                            text={element.tagDescription} 
-                            type="description"/>
-                        );
-                    })
-                    }
-                </ListTag>
-
-                {flagEdit && 
-                    <Button text="Add"/>}
-            </div>
-            
-            <TagItemManager listTags={listTagsAux} listTagsAdded={props.tags}/>
+                value={description} />            
+            <TagItemManager listTags={listTagsAux} listTagsAdded={props.tags} flagEdit={flagEdit}/>
 
             <DeleteIcon 
                 noteDelete={flagEdit}/>

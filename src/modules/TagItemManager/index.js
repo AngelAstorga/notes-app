@@ -5,12 +5,13 @@ import { Button } from "../Button";
 import { SearchBox } from "../SearchBox";
 import { NoteAppContext } from "../../contexts/NoteAppContext";
 
-function TagItemManager({listTags,listTagsAdded}){
+function TagItemManager({listTags,listTagsAdded, flagEdit}){
 
     const {listNotes}=React.useContext(NoteAppContext);
     const [searchTag, setSearchTag] = React.useState("");
     const [flagNewTagFromItem,setFlagNewTagFromItem]= React.useState(false);
     const [auxListTags,setAuxListTags]= React.useState([]);
+    const [flagOpenSearch,setFlagOpenSearch]= React.useState(false);
 
     let value=[];
     value=listTags.find((tag)=>{
@@ -43,24 +44,46 @@ function TagItemManager({listTags,listTagsAdded}){
         }
 
     },[listTags,listNotes]);
-    
+
+    React.useEffect(()=>{
+        if(!flagEdit){
+            setFlagOpenSearch(false);
+        }
+    },[flagEdit]);
+
+    const handleOpenSearch=()=>{
+        flagOpenSearch?setFlagOpenSearch(false):setFlagOpenSearch(true);
+    }
 
     return(
         <div className="TagItemManagerContainer">
-            <div className="tagItemManager__head">
+            <div className="TagItemManager__head">
                 <div className="TagItemManager__listTags">
-                    {auxListTags.map((tag)=>{
+                    {
+                    flagEdit 
+                    ? auxListTags.map((tag)=>{
+                        return (
+                            tag.status 
+                            && <Tag 
+                                key={`ItemTag${tag.idTag}`} 
+                                text= {tag.description} 
+                                type="TagItemManager"/>)
+                        })
+                    : auxListTags.map((tag)=>{
                     return (
                         tag.status 
                         && <Tag 
                             key={`ItemTag${tag.idTag}`} 
                             text= {tag.description} 
-                            type="TagItemManager"/>)
-                    })}
+                            type="description"/>)
+                    })
+                    }
                 </div>
-                <Button text="Add"/>
+                {flagEdit && <Button text="Add" handleOnclick={handleOpenSearch}/>}
             </div>
-        <SearchBox 
+        {(flagOpenSearch && flagEdit) &&
+        <>
+            <SearchBox 
             type="SearchTagItem" 
             text="Search Tag" 
             searchTagItem={searchTag} 
@@ -70,13 +93,17 @@ function TagItemManager({listTags,listTagsAdded}){
             />
         <div className="TagItemManager__listTags">
                     {auxListTags.map((tag)=>{
-                    return !tag.status 
-                    && <Tag 
+                        return (!tag.status && tag.description.includes(searchTag) && searchTag.length > 0) 
+                        && <Tag 
                         key={`ItemTag${tag.idTag}`} 
                         text= {tag.description} 
                         type="TagItemManager"/>
                     })}
-                </div>
+        </div>    
+                    </>
+        }
+
+        
         </div>
     );
 }
