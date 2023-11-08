@@ -20,7 +20,7 @@ function SearchBox({type, text, searchTagItem, setSearchTagItem, flagNewTagFromI
         const date= new Date();
         if(flagNewTagFromItem){
             let listTagsAux= [...listTags];
-            const newTag={idTag: date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+"-"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(),description: searchTagItem ,status:true}
+            const newTag={idTag: date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+"-"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds(),description: searchTagItem ,status:false}
             listTagsAux.push(newTag);
             setListTags(listTagsAux);
             setSearchTagItem("");

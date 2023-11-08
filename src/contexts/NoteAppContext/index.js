@@ -21,6 +21,7 @@ function NoteAppProvider({children}){
     const [searchTag,setSearchTag] = React.useState("");
     const [flagNewTag,setFlagNewTag] = React.useState(false);
     const [flagFilter,setFlagFilter] = React.useState(false);
+    const [flagOpenModal, setFlagOpenModal]= React.useState(false);
 
 
     return (
@@ -39,6 +40,8 @@ function NoteAppProvider({children}){
                 flagNewTag,
                 flagFilter,
                 setFlagFilter,
+                flagOpenModal,
+                setFlagOpenModal
             }
         }>
             {children}

@@ -10,4 +10,7 @@
     --defaultTagBorder: 33,33,33;
     /* Notes Variables*/
     --borderBox: 0,0,0;
+    /* Modals Variables*/
+    --modalContainerBackground: 33,33,33;
+    --modalWrapperBackground: 255,255,255;
 }

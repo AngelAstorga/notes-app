@@ -23,3 +23,6 @@
     display: flex;
     justify-content: space-between;
 }
+.ModalItemContainer{
+    position: relative;
+}

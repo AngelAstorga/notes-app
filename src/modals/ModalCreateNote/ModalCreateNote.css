@@ -1,0 +1,40 @@
+.ModalCreateNoteContainer{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: rgba(var(--modalContainerBackground),0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ModalCreateNoteWrapper{
+    width: 230px;
+    height: auto;
+    background-color: rgb(var(--modalWrapperBackground));
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.ModalCreateNote__tagList{
+    display: flex;
+    flex-wrap: wrap;
+}
+.ModalCrateNote__description{
+    border: none;
+    box-sizing: border-box;
+    height: 90px;
+    padding: 7px;
+    resize: none;
+    margin: 5px;
+    margin-bottom: 0px;
+}
+.ModalCreateNote__tagsManager{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}

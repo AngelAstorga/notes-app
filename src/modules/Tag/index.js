@@ -43,6 +43,23 @@ const TagTypes= {
                     </span>
                 )
         },       
+    "TagsNewItem": ({text, name, setNewNote, newNote, auxListTags, setAuxListTags})=>{
+            return (
+                <span 
+                    onDoubleClick={
+                        (e)=>{
+                            e.stopPropagation();
+                        manageTagFromNewNote({e,auxListTags, setAuxListTags})
+                    }
+                    
+                    } 
+                    className="TagContainer" 
+                    name= {name}>
+                    
+                    {text}
+                    </span>
+                )
+        },       
     "default": ({})=>{
         return (
                 <></>
@@ -50,6 +67,25 @@ const TagTypes= {
         }       
 }
 
+    const manageTagFromNewNote=({e, auxListTags, setAuxListTags})=>{
+        let idTag= e.currentTarget.getAttribute("name");
+        let indexTag="";
+        let tag=auxListTags.find((tag, index)=>{
+            if(idTag == tag.idTag){
+                indexTag= index;
+                return true;
+            }
+        });
+        const tempList= JSON.parse(JSON.stringify(auxListTags));
+        if(tag != undefined && tag.status == true){
+            tempList[indexTag].status= false;
+            setAuxListTags(tempList);
+        }else{
+            tempList[indexTag].status= true;
+            setAuxListTags(tempList);
+        }
+
+    }
     const manageTag=({e,listTags, setListTags, setSearchTag})=>{
         
         let indexAux=undefined;
@@ -116,38 +152,21 @@ const TagTypes= {
                 let newNote=[];
                 auxListNotes=[...auxListNotesMain];
                 newNote= auxListNotes[indexNote];
-             if(flagAdded){
-                newNote.tags.splice(indexTag,1);
-                auxListNotes.splice(indexNote,1,newNote);
-                setListNotes(auxListNotes);
-             }else{
-                newNote.tags.push({idTag: idTag, tagDescription: description});
-                auxListNotes.splice(indexNote,1,newNote);
-                setListNotes(auxListNotes);
-             }
+                if(flagAdded){
+                    newNote.tags.splice(indexTag,1);
+                    auxListNotes.splice(indexNote,1,newNote);
+                    setListNotes(auxListNotes);
+                }else{
+                    newNote.tags.push({idTag: idTag, tagDescription: description});
+                    auxListNotes.splice(indexNote,1,newNote);
+                    setListNotes(auxListNotes);
+                }
                 
             }
-        }
-        // let indexAux=undefined;
-        // let listTagsAux=[...listTags];
-        // let element=listTagsAux.find((element,index)=>{
-        //     if(element.idTag ==  e.target.getAttribute("name")){
-        //         indexAux= index;
-        //     }
-        //     return element.idTag ==  e.target.getAttribute("name")
-        // });
-        // if(element.status){
-        //     element.status = false;
-        // }else{
-        //     element.status = true;
-        //     setSearchTag("");
-            
-        // }
-        // listTagsAux.splice(indexAux,1,element);
-        // setListTags(listTagsAux);        
+        }      
     }
     
-function Tag({text, name, type}){
+function Tag({text, name, type,newNote, setNewNote, setAuxListTags, auxListTags}){
     const {listTags,setListTags, setSearchTag, listNotes, setListNotes}= React.useContext(NoteAppContext);
     if(typeof(type) != "string"){
         type="default"
@@ -155,7 +174,7 @@ function Tag({text, name, type}){
 
     return(
         <>
-        {TagTypes[type]({text, name, type, listTags, setListTags, setSearchTag, listNotes, setListNotes})}
+        {TagTypes[type]({text, name, type, listTags, setListTags, setSearchTag, listNotes, setListNotes, newNote,setNewNote,auxListTags,setAuxListTags})}
         </>
     );
 }

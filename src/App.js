@@ -4,6 +4,7 @@ import { ItemList } from './modules/ItemList';
 import { SearchBox } from './modules/SearchBox';
 import { TagFilter } from './modules/TagFilter';
 import { CreateNote } from './modules/CreateNote';
+import { ModalCreateNote } from './modals/ModalCreateNote';
 
 
 function App() {
@@ -12,9 +13,9 @@ function App() {
     <div className='AppWrapper'>
     <SearchBox type="Search" text="Search"/>
     <TagFilter/>
-    <ItemList/>
-    {/* 
-    <CreateNote/> */}
+    <ItemList/>    
+    <CreateNote/>
+    <ModalCreateNote/>  
     </div>
   </div>
   );
